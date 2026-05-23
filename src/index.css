@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #101318;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #101318; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+.nav-link {
+  color: #6b7280;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-link::before { content: ''; opacity: 0; transition: opacity 0.2s; }
+.nav-link::after { content: ''; opacity: 0; transition: opacity 0.2s; }
+.nav-link:hover { color: white; }
+.nav-link:hover::before { content: '( '; opacity: 1; }
+.nav-link:hover::after { content: ' )'; opacity: 1; }
+
+.creative-text {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  position: relative;
+  cursor: default;
+  user-select: none;
+}
+.creative-text:hover {
+  text-shadow: 8px 8px 0px #facc15, 12px 12px 0px rgba(250,204,21,0.3);
+  transition: text-shadow 0.1s;
+}
+
+.project-image-card {
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 25s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+
+@keyframes marquee-slow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-slow { animation: marquee-slow 40s linear infinite; }
+
+.settings-panel {
+  transform: translateX(110%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.settings-panel.open {
+  transform: translateX(0);
+}
+
+.menu-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.menu-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
